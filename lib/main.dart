@@ -1,3 +1,4 @@
+import 'package:api_list_app/views/ListForm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Notes App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LandingPage(),
@@ -24,15 +26,29 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.yellow[50],
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
-      ),
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => ListForm()));
+          }),
       appBar: AppBar(
-        title: Text('List App'),
-      ),
-      body: Column(
-        children: <Widget>[Text('Test')],
+          title: Center(
+        child: Text('Notes App'),
+      )),
+      body: ListView.separated(
+        separatorBuilder: (_, __) => Divider(
+          height: 1,
+          color: Colors.green,
+        ),
+        itemCount: 11,
+        itemBuilder: (_, i) {
+          return ListTile(
+            title: Text('Hello'),
+            subtitle: Text('I\'am Sub title'),
+          );
+        },
       ),
     );
   }
