@@ -24,11 +24,22 @@ class MyApp extends StatelessWidget {
 }
 
 class LandingPage extends StatelessWidget {
-
   final notes = [
-    Notes(id: '1', title: 'Some title', subTitle: 'Sub title', createdOn: '12/30/2020'),
-    Notes(id: '2', title: 'Another title', subTitle: 'something title', createdOn: '12/30/2020'),
-    Notes(id: '3', title: 'The end', subTitle: 'go and sleep', createdOn: '12/30/2020'),
+    Notes(
+        id: '1',
+        title: 'Some title',
+        subTitle: 'Sub title',
+        createdOn: '12/30/2020'),
+    Notes(
+        id: '2',
+        title: 'Another title',
+        subTitle: 'something title',
+        createdOn: '12/30/2020'),
+    Notes(
+        id: '3',
+        title: 'The end',
+        subTitle: 'go and sleep',
+        createdOn: '12/30/2020'),
   ];
 
   @override
@@ -36,17 +47,17 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.yellow[50],
       floatingActionButton: FloatingActionButton(
-        elevation: 20,
+          elevation: 20,
           child: Icon(Icons.add),
           onPressed: () {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (_) => ListForm()));
           }),
       appBar: AppBar(
-        elevation: 10,
+          elevation: 10,
           title: Center(
-        child: Text('Notes App'),
-      )),
+            child: Text('Notes'),
+          )),
       body: ListView.separated(
         separatorBuilder: (_, __) => Divider(
           height: 1,
@@ -55,8 +66,12 @@ class LandingPage extends StatelessWidget {
         itemCount: notes.length,
         itemBuilder: (_, i) {
           return ListTile(
-            title: Text('Hello'),
-            subtitle: Text('I\'am Sub title'),
+            title: Text(notes[i].title),
+            subtitle: Text(notes[i].subTitle),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => ListForm(id: '1',)));
+            },
           );
         },
       ),

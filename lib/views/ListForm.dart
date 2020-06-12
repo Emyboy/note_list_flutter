@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ListForm extends StatefulWidget {
-  @override
-  _ListFormState createState() => _ListFormState();
-}
+class ListForm extends StatelessWidget {
+  const ListForm({Key key, this.id}) : super(key: key);
+  final String id;
+  bool get isEditing => id != null;
 
-class _ListFormState extends State<ListForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +12,7 @@ class _ListFormState extends State<ListForm> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text('Add Note'),
+              Text(isEditing ? "Edit Details" : 'Add Note'),
               IconButton(
                 icon: Icon(Icons.favorite, color: Colors.red,),
                 onPressed: () {},
