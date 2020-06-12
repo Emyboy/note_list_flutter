@@ -1,3 +1,4 @@
+import 'package:api_list_app/models/Notes.dart';
 import 'package:api_list_app/views/ListForm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,17 +24,26 @@ class MyApp extends StatelessWidget {
 }
 
 class LandingPage extends StatelessWidget {
+
+  final notes = [
+    Notes(id: '1', title: 'Some title', subTitle: 'Sub title', createdOn: '12/30/2020'),
+    Notes(id: '2', title: 'Another title', subTitle: 'something title', createdOn: '12/30/2020'),
+    Notes(id: '3', title: 'The end', subTitle: 'go and sleep', createdOn: '12/30/2020'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.yellow[50],
       floatingActionButton: FloatingActionButton(
+        elevation: 20,
           child: Icon(Icons.add),
           onPressed: () {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (_) => ListForm()));
           }),
       appBar: AppBar(
+        elevation: 10,
           title: Center(
         child: Text('Notes App'),
       )),
@@ -42,7 +52,7 @@ class LandingPage extends StatelessWidget {
           height: 1,
           color: Colors.green,
         ),
-        itemCount: 11,
+        itemCount: notes.length,
         itemBuilder: (_, i) {
           return ListTile(
             title: Text('Hello'),
