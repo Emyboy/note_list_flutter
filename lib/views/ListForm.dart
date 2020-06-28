@@ -14,7 +14,7 @@ class ListForm extends StatelessWidget {
             children: <Widget>[
               Text(isEditing ? "Edit Details" : 'Add Note'),
               IconButton(
-                icon: Icon(Icons.favorite, color: Colors.red,),
+                icon: Icon(Icons.favorite, color: Colors.red[100],),
                 onPressed: () {},
               )
             ],

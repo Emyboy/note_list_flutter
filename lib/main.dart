@@ -65,13 +65,23 @@ class LandingPage extends StatelessWidget {
         ),
         itemCount: notes.length,
         itemBuilder: (_, i) {
-          return ListTile(
-            title: Text(notes[i].title),
-            subtitle: Text(notes[i].subTitle),
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => ListForm(id: '1',)));
+          return Dismissible(
+            direction: DismissDirection.startToEnd,
+            onDismissed: (dirrection){},
+            confirmDismiss: (dirrection){
+              showDialog(child: Delete(dirrection));
             },
+            key: ValueKey(i),
+            child: ListTile(
+              title: Text(notes[i].title),
+              subtitle: Text(notes[i].subTitle),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => ListForm(
+                          id: '1',
+                        )));
+              },
+            ),
           );
         },
       ),
